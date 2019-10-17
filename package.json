@@ -1,7 +1,7 @@
 {
   "name": "react-recipes",
   "version": "1.0.0",
-  "description": "A starter for React-Apollo-GraphQL projects",
+  "description": "An app using React, Apollo, GraphQL, express and MongoDb",
   "main": "server.js",
   "scripts": {
     "server": "nodemon server.js",
