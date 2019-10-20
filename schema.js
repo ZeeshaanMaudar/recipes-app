@@ -18,4 +18,8 @@ type User {
   favorite: [Recipe]
 }
 
+type Query {
+  getAllRecipes: [Recipe]
+}
+
 `;
