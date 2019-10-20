@@ -32,13 +32,17 @@ const app = express();
 app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
 
 // Connect Schemas with GraphQl
-app.use('/graphql', graphqlExpress({
-  schema,
-  context: {
-    Recipe,
-    User
-  }
-}));
+app.use(
+  '/graphql',
+  bodyParser.json(),
+  graphqlExpress({
+    schema,
+    context: {
+      Recipe,
+      User
+    }
+  })
+);
 
 // setup the server
 const PORT = process.env.PORT || 4444;
