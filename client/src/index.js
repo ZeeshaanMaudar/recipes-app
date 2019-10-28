@@ -11,6 +11,7 @@ import SignUp from './components/Auth/Signup';
 import SignIn from './components/Auth/Signin';
 import withSession from './components/withSession';
 import NavBar from './components/NavBar';
+import Search from './components/Recipe/Search';
 
 const client = new ApolloClient({
   uri: 'http://localhost:4444/graphql',
@@ -38,6 +39,7 @@ const Root = ({ refetch }) => (
       <NavBar />
       <Switch>
         <Route path="/" exact component={App} />
+        <Route path="/search" component={Search} />
         <Route path="/signin" render={() => <SignIn {...{ refetch }} />} />
         <Route path="/signup" render={() => <SignUp {...{ refetch }} />} />
         <Redirect to="/" />
