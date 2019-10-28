@@ -13,6 +13,12 @@ class AddRecipe extends Component {
     this.state = { ...initialState };
   }
 
+  componentDidMount() {
+    const { username } = this.props.session.getCurrentUser;
+
+    this.setState({ username });
+  };
+
   handleChange = element => {
     const { name, value } = element.target;
 
