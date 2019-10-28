@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const jwt = require('jsonwebtoken');
 
 require('dotenv').config({ path: 'variables.env' });
 
@@ -38,7 +39,17 @@ app.use(cors(corsOptions));
 
 // Set up JWT authentication middleware
 app.use(async (req, res, next) => {
-  const token = await req.headers['authorization'];
+  const token = req.headers['authorization'];
+  if(token !== 'null') {
+    try {
+      const currentUser = await jwt.verify(token, process.env.SECRET);
+      console.log(333, currentUser);
+    } catch(err) {
+      console.console.error();
+      (err);
+    }
+  }
+  // console.log(222, token, typeof token)
   next();
 })
 
