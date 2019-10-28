@@ -38,7 +38,7 @@ class AddRecipe extends Component {
             <option value="Snack">Snack</option>
           </select>
           <input type="text" name="description" placeholder="Add description" value={description} onChange={this.handleChange} />
-          <textarea name={instructions} placeholder="Add instructions"></textarea>
+          <textarea name="instructions" placeholder="Add instructions" value={instructions} onChange={this.handleChange} />
           <button type="submit" className="button-primary">Submit</button>
         </form>
       </div>
