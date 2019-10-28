@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Mutation } from 'react-apollo';
+import { withRouter } from 'react-router-dom';
 
 import { SIGNIN_USER } from '../../queries';
 import Error from '../Error';
@@ -32,6 +33,7 @@ class SignIn extends Component {
       const { token } = data.signinUser;
       localStorage.setItem('token', token);
       this.clearState();
+      this.props.history.push('/');
     });
   };
 
@@ -84,4 +86,4 @@ class SignIn extends Component {
   }
 };
 
-export default SignIn;
+export default withRouter(SignIn);

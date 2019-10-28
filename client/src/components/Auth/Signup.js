@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Mutation } from 'react-apollo';
+import { withRouter } from 'react-router-dom';
 
 import { SIGNUP_USER } from '../../queries';
 import Error from '../Error';
@@ -34,6 +35,7 @@ class SignUp extends Component {
       const { token } = data.signupUser;
       localStorage.setItem('token', token);
       this.clearState();
+      this.props.history.push('/');
     });
   };
 
@@ -100,4 +102,4 @@ class SignUp extends Component {
   }
 };
 
-export default SignUp;
+export default withRouter(SignUp);
