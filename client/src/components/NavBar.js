@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-const NavBarUnAuth = () => (
+const callNavBarUnAuth = () => (
   <ul>
     <li>
       <NavLink to="/" exact>Home</NavLink>
@@ -18,7 +18,7 @@ const NavBarUnAuth = () => (
   </ul>
 );
 
-const NavBarAuth = () => (
+const callNavBarAuth = () => (
   <ul>
     <li>
       <NavLink to="/" exact>Home</NavLink>
@@ -38,9 +38,17 @@ const NavBarAuth = () => (
   </ul>
 );
 
-const NavBar = () => (
+const callNavBar = session => {
+  if(session && session.getCurrentUser) {
+    return callNavBarAuth();
+  }
+  
+  return callNavBarUnAuth();
+}
+
+const NavBar = ({ session }) => (
   <nav>
-    <NavBarAuth />
+    {callNavBar(session)}
   </nav>
 );
 
