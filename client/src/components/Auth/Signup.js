@@ -30,10 +30,11 @@ class SignUp extends Component {
 
   handleSubmit = (event, signupUser) => {
     event.preventDefault();
-    signupUser().then(({ data }) => {
+    signupUser().then(async ({ data }) => {
       console.log(333, data)
       const { token } = data.signupUser;
       localStorage.setItem('token', token);
+      await this.props.refetch();
       this.clearState();
       this.props.history.push('/');
     });
