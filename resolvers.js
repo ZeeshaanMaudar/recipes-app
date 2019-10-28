@@ -28,9 +28,10 @@ exports.resolvers = {
     },
 
     signinUser: async (root, { username, password }, { User }) => {
-      const user = await User.find({ username });
+      const user = await User.findOne({ username });
 
-      if(user.length < 0) {
+      console.log(1111, user);
+      if(!user) {
         throw new Error('User not found');
       }
 
@@ -43,8 +44,8 @@ exports.resolvers = {
     },
 
     signupUser: async (root, { username, email, password }, { User }) => {
-      const user = await User.find({ username });
-      if(user.length > 0) {
+      const user = await User.findOne({ username });
+      if(user) {
         throw new Error('User already exists');
       }
 
