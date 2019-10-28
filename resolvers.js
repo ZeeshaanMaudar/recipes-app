@@ -30,7 +30,6 @@ exports.resolvers = {
     signinUser: async (root, { username, password }, { User }) => {
       const user = await User.findOne({ username });
 
-      console.log(1111, user);
       if(!user) {
         throw new Error('User not found');
       }
