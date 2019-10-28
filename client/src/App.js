@@ -4,6 +4,12 @@ import './App.css';
 import { Query } from 'react-apollo';
 import { GET_ALL_RECIPES } from './queries';
 
+import RecipeItem from './components/Recipe/RecipeItem';
+
+const callAllRecipes = ({ _id, name, category }) => (
+  <RecipeItem key={_id} {...{ _id, name, category }} />
+);
+
 const App = () => (
   <div className="App">
     <h1>Home</h1>
@@ -12,8 +18,9 @@ const App = () => (
         if (loading) return <div>Loading</div>
         if(error) return <div>Error</div>
         console.log(data)
+        const { getAllRecipes } = data;
         return (
-          <p>Recipes</p>
+          <ul>{getAllRecipes.map(callAllRecipes)}</ul>
         );
       }}
     </Query>
