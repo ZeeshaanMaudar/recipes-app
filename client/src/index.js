@@ -9,6 +9,7 @@ import { ApolloProvider } from 'react-apollo';
 import App from './App';
 import SignUp from './components/Auth/Signup';
 import SignIn from './components/Auth/Signin';
+import withSession from './components/withSession';
 
 const client = new ApolloClient({
   uri: 'http://localhost:4444/graphql',
@@ -41,8 +42,10 @@ const Root = () => (
   </Router>
 );
 
+const RootWithSession = withSession(Root);
+
 ReactDOM.render(
   <ApolloProvider client={client}>
-    <Root />
+    <RootWithSession />
   </ApolloProvider>
 , document.getElementById('root'));
