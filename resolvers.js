@@ -71,6 +71,11 @@ exports.resolvers = {
       return newRecipe;
     },
 
+    deleteRecipe: async (root, { _id }, { Recipe }) => {
+      const recipe = await Recipe.findOneAndRemove({ _id });
+      return recipe;
+    },
+
     signinUser: async (root, { username, password }, { User }) => {
       const user = await User.findOne({ username });
 
