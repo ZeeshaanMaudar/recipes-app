@@ -66,6 +66,7 @@ const UserRecipes = ({ username }) => (
       return (
         <ul>
           <h3>Your Recipes</h3>
+          {!getUserRecipes.length && <p><strong>You haven't added any recipes yet!</strong></p>}
           {getUserRecipes.map(callRecipes(username))}
         </ul>
       );
