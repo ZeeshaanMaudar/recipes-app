@@ -43,7 +43,7 @@ const Root = ({ refetch, session }) => (
       <Switch>
         <Route path="/" exact component={App} />
         <Route path="/search" component={Search} />
-        <Route path="/profile" component={Profile} />
+        <Route path="/profile" render={() => <Profile {...{ session }} />} />
         <Route path="/signin" render={() => <SignIn {...{ refetch }} />} />
         <Route path="/signup" render={() => <SignUp {...{ refetch }} />} />
         <Route path="/recipe/add" render={() => <AddRecipe {...{ session }} />} />
