@@ -14,6 +14,23 @@ const handleDelete = deleteUserRecipe => {
   }
 }
 
+const updateCache = username => (cache, { data }) => {
+  const { getUserRecipes } = cache.readQuery({
+    query: GET_USER_RECIPES,
+    variables: { username }
+  });
+
+  const { deleteRecipe } = data;
+
+  cache.writeQuery({
+    query: GET_USER_RECIPES,
+    variables: { username },
+    data: {
+      getUserRecipes: getUserRecipes.filter(recipe => recipe._id !== deleteRecipe._id)
+    }
+  })
+};
+
 const callRecipes = username => ({ _id, name, likes }) => (
   <li key={_id}>
     <Link to={`/recipes/${_id}`}>
@@ -27,22 +44,7 @@ const callRecipes = username => ({ _id, name, likes }) => (
         { query: GET_ALL_RECIPES },
         { query: GET_CURRENT_USER }
       ]}
-      update={(cache, { data }) => {
-        const { getUserRecipes } = cache.readQuery({
-          query: GET_USER_RECIPES,
-          variables: { username }
-        });
-
-        const { deleteRecipe } = data;
-
-        cache.writeQuery({
-          query: GET_USER_RECIPES,
-          variables: { username },
-          data: {
-            getUserRecipes: getUserRecipes.filter(recipe => recipe._id !== deleteRecipe._id)
-          }
-        })
-      }}
+      update={() => updateCache(username)}
     >
       {(deleteUserRecipe, attrs = {}) => {
         return (
