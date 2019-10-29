@@ -17,7 +17,7 @@ type User {
   password: String!
   email: String!
   joinDate: String
-  favorite: [Recipe]
+  favorites: [Recipe]
 }
 
 type Query {
