@@ -29,7 +29,6 @@ class SignIn extends Component {
   handleSubmit = (event, signinUser) => {
     event.preventDefault();
     signinUser().then(async ({ data }) => {
-      console.log(data);
       const { token } = data.signinUser;
       localStorage.setItem('token', token);
       await this.props.refetch();

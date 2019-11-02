@@ -17,7 +17,6 @@ const App = () => (
       {({ data, loading, error }) => {
         if (loading) return <div>Loading</div>
         if(error) return <div>Error</div>
-        console.log(data)
         const { getAllRecipes } = data;
         return (
           <ul>{getAllRecipes.map(callAllRecipes)}</ul>
