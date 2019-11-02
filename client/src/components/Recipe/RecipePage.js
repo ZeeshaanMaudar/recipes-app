@@ -7,7 +7,7 @@ import { GET_RECIPE } from '../../queries';
 import LikeRecipe from './LikeRecipe';
 
 
-const callRecipe = ({ getRecipe }) => {
+const callRecipe = ({ getRecipe }, _id) => {
   const { name, category, description, instructions, username, likes } = getRecipe;
 
   return (
@@ -18,7 +18,7 @@ const callRecipe = ({ getRecipe }) => {
       <p>Instructions: {instructions}</p>
       <p>Likes: {likes}</p>
       <p>Created By: {username}</p>
-      <LikeRecipe />
+      <LikeRecipe {...{ _id }} />
     </div>
   );
 };
@@ -32,7 +32,7 @@ const RecipePage = ({ match }) => {
       {({ data, loading, error }) => {
         if(loading) return <div>Loading...</div>;
         if(error) return <div>Error</div>;
-        return callRecipe(data)
+        return callRecipe(data, _id)
       }}
     </Query>
   );
